@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">McBaoBao</string>
+    <string name="login">Login</string>
+    <string name="logined">Logined</string>
+    <string name="not_login">Not Login</string>
+    <string name="login_hint">Please Login</string>
+    <string name="login_fail">Login Fail</string>
+    <string name="start_login">Start Login</string>
+    <string name="verifying">Verifying</string>
+    <string name="draw">Draw</string>
+</resources>
