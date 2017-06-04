@@ -8,9 +8,9 @@ import org.jetbrains.anko.*
 import io.github.dansnow.mcbaobao.ui.base.BaseActivity
 import io.github.dansnow.mcbaobao.ui.base.ActivityComponent
 import io.github.dansnow.mcbaobao.ui.login.LoginActivity
-import io.github.dansnow.mcbaobao.data.pref.Token
 import io.github.dansnow.mcbaobao.AppConstants
 import io.github.dansnow.mcbaobao.ApplicationComponent
+import io.github.dansnow.mcbaobao.service.DrawService
 import io.github.dansnow.mcbaobao.R
 import javax.inject.Inject
 
@@ -18,10 +18,13 @@ class MainActivity : BaseActivity() {
   @Inject
   lateinit var rxPrefs: RxSharedPreferences
 
+  @Inject
+  lateinit var drawService: DrawService
+
   @CallSuper
   override fun onCreate(savedInstanceState: Bundle?){
       super.onCreate(savedInstanceState)
-      MainUI(rxPrefs).setContentView(this)
+      MainUI(rxPrefs, drawService).setContentView(this)
   }
 
 
@@ -34,7 +37,10 @@ class MainActivity : BaseActivity() {
   }
 }
 
-class MainUI(val rxPrefs: RxSharedPreferences) : AnkoComponent<MainActivity> {
+class MainUI(
+  val rxPrefs: RxSharedPreferences,
+  val drawService: DrawService
+) : AnkoComponent<MainActivity> {
   val tokenPref = rxPrefs.getString(AppConstants.TOKEN_PREF)
 
   override fun createView(ui: AnkoContext<MainActivity>) = with(ui) {
@@ -51,7 +57,24 @@ class MainUI(val rxPrefs: RxSharedPreferences) : AnkoComponent<MainActivity> {
         }
       }
 
-      val drawBtn = button(R.string.draw)
+      val drawBtn = button(R.string.draw) {
+        setOnClickListener {
+          drawService
+            .draw()
+            .doOnSubscribe {
+              statusText.textResource = R.string.verifying
+            }
+            .subscribe(
+              { result ->
+                statusText.text = result.result
+              },
+              {
+                _ ->
+                statusText.textResource = R.string.draw_fail
+              }
+            )
+        }
+      }
 
       tokenPref.asObservable().subscribe { _ ->
         val isLogin = tokenPref.isSet()
@@ -62,10 +85,8 @@ class MainUI(val rxPrefs: RxSharedPreferences) : AnkoComponent<MainActivity> {
         }
         loginBtn
           .setClickable(!isLogin)
-          // .setEnabled(!isLogin)
         drawBtn
           .setClickable(isLogin)
-          // .setEnabled(isLogin)
       }
     }
   }

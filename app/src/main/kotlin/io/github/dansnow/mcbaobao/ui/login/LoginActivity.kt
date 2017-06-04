@@ -8,7 +8,6 @@ import com.f2prateek.rx.preferences2.RxSharedPreferences
 import org.jetbrains.anko.*
 import io.github.dansnow.mcbaobao.ui.base.BaseActivity
 import io.github.dansnow.mcbaobao.ui.base.ActivityComponent
-import io.github.dansnow.mcbaobao.data.pref.Account
 import io.github.dansnow.mcbaobao.ApplicationComponent
 import io.github.dansnow.mcbaobao.service.LoginService
 import io.github.dansnow.mcbaobao.AppConstants

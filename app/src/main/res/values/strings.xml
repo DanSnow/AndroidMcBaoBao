@@ -8,4 +8,5 @@
     <string name="start_login">Start Login</string>
     <string name="verifying">Verifying</string>
     <string name="draw">Draw</string>
+    <string name="draw_fail">Draw Fail</string>
 </resources>

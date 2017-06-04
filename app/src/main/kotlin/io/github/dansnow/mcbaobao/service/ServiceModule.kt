@@ -7,4 +7,7 @@ import dagger.Provides
 class ServiceModule {
   @Provides
   fun provideLoginSerice(service: LoginService) = service
+
+  @Provides
+  fun provideDrawSerice(service: DrawService) = service
 }
