@@ -9,4 +9,6 @@
     <string name="verifying">Verifying</string>
     <string name="draw">Draw</string>
     <string name="draw_fail">Draw Fail</string>
+    <string name="account">Account</string>
+    <string name="password">Password</string>
 </resources>

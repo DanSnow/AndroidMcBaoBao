@@ -4,6 +4,7 @@ import kotlin.reflect.KClass
 import javax.inject.Inject
 import android.os.Bundle
 import android.text.InputType
+import android.widget.TextView.BufferType
 import android.support.annotation.CallSuper
 import com.f2prateek.rx.preferences2.RxSharedPreferences
 import org.jetbrains.anko.*
@@ -13,6 +14,7 @@ import io.github.dansnow.mcbaobao.ApplicationComponent
 import io.github.dansnow.mcbaobao.service.LoginService
 import io.github.dansnow.mcbaobao.AppConstants
 import io.github.dansnow.mcbaobao.R
+import kotlinx.android.synthetic.main.activity_login.*
 
 class LoginActivity : BaseActivity() {
   @Inject
@@ -24,7 +26,27 @@ class LoginActivity : BaseActivity() {
   @CallSuper
   override fun onCreate(savedInstanceState: Bundle?){
     super.onCreate(savedInstanceState)
-    LoginUI(rxPrefs, loginService).setContentView(this)
+    setContentView(R.layout.activity_login)
+    val tokenPref = rxPrefs.getString(AppConstants.TOKEN_PREF)
+    loginBtn.setOnClickListener {
+          loginService
+            .login(
+              accountInput.text.toString(),
+              passwordInput.text.toString()
+            )
+            .doOnSubscribe {
+              statusText.setText(R.string.verifying, BufferType.NORMAL)
+            }
+            .subscribe(
+              { token ->
+                tokenPref.set(token)
+              },
+              {
+                err ->
+                statusText.setText(R.string.login_fail, BufferType.NORMAL)
+              }
+            )
+    }
   }
 
   override fun injectDepencies(graph: ApplicationComponent) {
@@ -33,40 +55,5 @@ class LoginActivity : BaseActivity() {
       .applicationComponent(graph)
       .build()
       .injectTo(this)
-  }
-}
-
-class LoginUI(val rxPrefs: RxSharedPreferences, val loginService: LoginService) : AnkoComponent<LoginActivity> {
-  val accountPref = rxPrefs.getString(AppConstants.ACCOUNT_PREF)
-  val passwordPref = rxPrefs.getString(AppConstants.PASSWORD_PREF)
-  val tokenPref = rxPrefs.getString(AppConstants.TOKEN_PREF)
-
-  override fun createView(ui: AnkoContext<LoginActivity>) = with(ui) {
-    verticalLayout {
-      val statusText = textView(R.string.login_hint)
-      val account = editText()
-      val password = editText() {
-        inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
-      }
-
-      button(R.string.login) {
-        setOnClickListener {
-          loginService
-            .login(account.text.toString(), password.text.toString())
-            .doOnSubscribe {
-              statusText.textResource = R.string.verifying
-            }
-            .subscribe(
-              { token ->
-                tokenPref.set(token)
-              },
-              {
-                err ->
-                statusText.textResource = R.string.login_fail
-              }
-            )
-        }
-      }
-    }
   }
 }
