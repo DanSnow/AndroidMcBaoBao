@@ -3,6 +3,7 @@ package io.github.dansnow.mcbaobao.ui.login
 import kotlin.reflect.KClass
 import javax.inject.Inject
 import android.os.Bundle
+import android.text.InputType
 import android.support.annotation.CallSuper
 import com.f2prateek.rx.preferences2.RxSharedPreferences
 import org.jetbrains.anko.*
@@ -44,7 +45,10 @@ class LoginUI(val rxPrefs: RxSharedPreferences, val loginService: LoginService) 
     verticalLayout {
       val statusText = textView(R.string.login_hint)
       val account = editText()
-      val password = editText()
+      val password = editText() {
+        inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
+      }
+
       button(R.string.login) {
         setOnClickListener {
           loginService
