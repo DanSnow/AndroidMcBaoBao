@@ -1,7 +1,7 @@
 AndroidMcBaoBao
 ===============
 
-** This project is still work in progress. **
+**This project is still work in progress.**
 
 ## Credits ##
 
