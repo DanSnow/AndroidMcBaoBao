@@ -1,9 +1,9 @@
-package io.github.dansnow.mcbaobao.data.remote
+package io.github.dansnow.mcbaobao.remote
 
-import io.github.dansnow.mcbaobao.data.remote.model.LoginRequest
-import io.github.dansnow.mcbaobao.data.remote.model.LoginResponse
-import io.github.dansnow.mcbaobao.data.remote.model.DrawRequest
-import io.github.dansnow.mcbaobao.data.remote.model.DrawResponse
+import io.github.dansnow.mcbaobao.remote.model.LoginRequest
+import io.github.dansnow.mcbaobao.remote.model.LoginResponse
+import io.github.dansnow.mcbaobao.remote.model.DrawRequest
+import io.github.dansnow.mcbaobao.remote.model.DrawResponse
 import io.reactivex.Single
 import retrofit2.http.POST
 import retrofit2.http.Body

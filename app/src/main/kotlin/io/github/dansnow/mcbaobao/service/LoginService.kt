@@ -10,8 +10,8 @@ import io.reactivex.disposables.Disposable
 import io.reactivex.disposables.Disposables
 import io.reactivex.Single
 import io.github.dansnow.mcbaobao.network.NetworkInteractor
-import io.github.dansnow.mcbaobao.data.remote.McApiService
-import io.github.dansnow.mcbaobao.data.remote.model.LoginRequest
+import io.github.dansnow.mcbaobao.remote.McApiService
+import io.github.dansnow.mcbaobao.remote.model.LoginRequest
 
 class LoginFailError : Throwable("Login fail")
 

@@ -1,4 +1,4 @@
-package io.github.dansnow.mcbaobao.data.remote
+package io.github.dansnow.mcbaobao.remote
 
 import dagger.Module
 import dagger.Provides
@@ -21,7 +21,7 @@ class ApiModule {
             gsonConverterFactory: GsonConverterFactory
     ): Retrofit {
         return Retrofit.Builder()
-                .baseUrl(ApiConstants.GITHUB_API_BASE_ENDPOINT)
+                .baseUrl("https://api1.mcddailyapp.com")
                 .addCallAdapterFactory(rxJavaCallAdapterFactory)
                 .addConverterFactory(gsonConverterFactory)
                 .build()

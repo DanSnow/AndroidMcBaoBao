@@ -6,8 +6,8 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import io.reactivex.Single
 import io.github.dansnow.mcbaobao.network.NetworkInteractor
-import io.github.dansnow.mcbaobao.data.remote.McApiService
-import io.github.dansnow.mcbaobao.data.remote.model.DrawRequest
+import io.github.dansnow.mcbaobao.remote.McApiService
+import io.github.dansnow.mcbaobao.remote.model.DrawRequest
 import io.github.dansnow.mcbaobao.AppConstants
 
 class DrawFailError : Throwable("Draw Fail")

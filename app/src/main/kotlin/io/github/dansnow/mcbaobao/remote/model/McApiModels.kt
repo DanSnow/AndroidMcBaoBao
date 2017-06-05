@@ -1,9 +1,9 @@
-package io.github.dansnow.mcbaobao.data.remote.model
+package io.github.dansnow.mcbaobao.remote.model
 
 import android.os.Build
 import com.google.gson.annotations.SerializedName
 import org.joda.time.LocalDateTime
-import io.github.dansnow.mcbaobao.data.remote.utils.md5
+import io.github.dansnow.mcbaobao.remote.utils.md5
 
 data class LoginRequest (
     @SerializedName("OrderNo")

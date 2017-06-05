@@ -7,11 +7,11 @@ import android.net.ConnectivityManager
 import android.telephony.TelephonyManager
 import com.f2prateek.rx.preferences2.RxSharedPreferences
 import io.github.dansnow.mcbaobao.network.NetworkModule
-import io.github.dansnow.mcbaobao.data.remote.ApiModule
+import io.github.dansnow.mcbaobao.remote.ApiModule
 import io.github.dansnow.mcbaobao.service.ServiceModule
 
 import io.github.dansnow.mcbaobao.network.NetworkInteractor
-import io.github.dansnow.mcbaobao.data.remote.McApiService
+import io.github.dansnow.mcbaobao.remote.McApiService
 
 import io.github.dansnow.mcbaobao.ui.main.MainModule
 import io.github.dansnow.mcbaobao.ui.main.MainComponent
