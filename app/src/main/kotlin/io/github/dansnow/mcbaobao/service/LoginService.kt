@@ -9,7 +9,7 @@ import io.reactivex.schedulers.Schedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.disposables.Disposables
 import io.reactivex.Single
-import io.github.dansnow.mcbaobao.data.network.NetworkInteractor
+import io.github.dansnow.mcbaobao.network.NetworkInteractor
 import io.github.dansnow.mcbaobao.data.remote.McApiService
 import io.github.dansnow.mcbaobao.data.remote.model.LoginRequest
 

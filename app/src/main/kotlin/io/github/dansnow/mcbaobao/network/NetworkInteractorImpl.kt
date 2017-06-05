@@ -1,4 +1,4 @@
-package io.github.dansnow.mcbaobao.data.network
+package io.github.dansnow.mcbaobao.network
 
 import android.net.ConnectivityManager
 import io.reactivex.Completable

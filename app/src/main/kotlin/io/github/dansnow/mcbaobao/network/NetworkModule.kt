@@ -1,11 +1,10 @@
-package io.github.dansnow.mcbaobao.data.network
+package io.github.dansnow.mcbaobao.network
 
 import android.content.Context
 import android.net.ConnectivityManager
 import dagger.Module
 import dagger.Provides
 import dagger.Binds
-// import io.github.dansnow.mcbaobao.ApplicationQualifier
 import javax.inject.Singleton
 
 @Module

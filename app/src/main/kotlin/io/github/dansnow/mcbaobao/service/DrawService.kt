@@ -5,7 +5,7 @@ import com.f2prateek.rx.preferences2.RxSharedPreferences
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import io.reactivex.Single
-import io.github.dansnow.mcbaobao.data.network.NetworkInteractor
+import io.github.dansnow.mcbaobao.network.NetworkInteractor
 import io.github.dansnow.mcbaobao.data.remote.McApiService
 import io.github.dansnow.mcbaobao.data.remote.model.DrawRequest
 import io.github.dansnow.mcbaobao.AppConstants
