@@ -22,7 +22,7 @@ class DrawService @Inject constructor(
   fun draw(): Single<DrawResult> {
     val tokenPref = rxPrefs.getString(AppConstants.TOKEN_PREF)
     if (!tokenPref.isSet()) {
-      return Single<DrawResult>.error(DrawFailError("Token not set"))
+      return Single.error(DrawFailError("Token not set"))
     }
 
     return networkInteractor
