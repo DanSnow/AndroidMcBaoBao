@@ -10,7 +10,7 @@ import io.github.dansnow.mcbaobao.remote.McApiService
 import io.github.dansnow.mcbaobao.remote.model.DrawRequest
 import io.github.dansnow.mcbaobao.AppConstants
 
-class DrawFailError : Throwable("Draw Fail")
+class DrawFailError(msg: String) : Throwable(msg)
 
 data class DrawResult(val message: String, val result: String)
 
@@ -20,18 +20,23 @@ class DrawService @Inject constructor(
   private val networkInteractor: NetworkInteractor
 ) {
   fun draw(): Single<DrawResult> {
+    val tokenPref = rxPrefs.getString(AppConstants.TOKEN_PREF)
+    if (!tokenPref.isSet()) {
+      return Single<DrawResult>.error(DrawFailError("Token not set"))
+    }
+
     return networkInteractor
       .hasNetworkConnectionCompletable()
       .andThen(
         apiService.draw(
-          DrawRequest(rxPrefs.getString(AppConstants.TOKEN_PREF).get())
+          DrawRequest(tokenPref.get())
         )
       )
       .subscribeOn(Schedulers.io())
       .observeOn(AndroidSchedulers.mainThread())
       .map { drawResponse ->
         if (drawResponse.rc != 1) {
-          throw DrawFailError()
+          throw DrawFailError("Draw fail")
         } else {
           DrawResult(
             message = drawResponse.rm,
