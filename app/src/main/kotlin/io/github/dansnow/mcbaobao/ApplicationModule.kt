@@ -1,6 +1,7 @@
 package io.github.dansnow.mcbaobao
 
 import android.app.Application
+import android.app.AlarmManager
 import android.content.Context
 import android.content.res.Resources
 import android.view.LayoutInflater
@@ -32,6 +33,10 @@ class ApplicationModule(private val app: KotlinBoilerplateApp) {
     @Provides @Singleton
     fun provideTelephonyManager(context: Context): TelephonyManager =
         context.getSystemService(Context.TELEPHONY_SERVICE) as TelephonyManager
+
+    @Provides @Singleton
+    fun provideAlarmManager(context: Context): AlarmManager =
+        context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
 
     @Provides @Singleton
     fun provideSharedPreferences(context: Context): SharedPreferences = 
