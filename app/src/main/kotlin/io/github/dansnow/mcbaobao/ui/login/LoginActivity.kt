@@ -40,6 +40,7 @@ class LoginActivity : BaseActivity() {
             .subscribe(
               { token ->
                 tokenPref.set(token)
+                finish()
               },
               {
                 err ->
